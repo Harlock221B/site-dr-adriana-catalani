@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Quando tiver o domínio final, você pode adicionar o sitemap aqui:
+# Sitemap: https://www.seusitedadrica.com.br/sitemap.xml

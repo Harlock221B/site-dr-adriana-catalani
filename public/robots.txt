@@ -1,5 +1,6 @@
+# Instruções para todos os robôs de busca (Google, Bing, etc.)
 User-agent: *
 Allow: /
 
-# Quando tiver o domínio final, você pode adicionar o sitemap aqui:
-# Sitemap: https://www.seusitedadrica.com.br/sitemap.xml
+# Aponta para o mapa do site (Substitua pelo domínio oficial depois)
+Sitemap: https://www.adrianacatalani.com.br/sitemap.xml

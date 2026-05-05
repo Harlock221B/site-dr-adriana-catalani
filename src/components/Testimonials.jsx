@@ -1,15 +1,41 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { depoimentos } from '../data/testimonialsData';
 
 export default function Testimonials() {
   const carouselRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const scroll = (direction) => {
     if (carouselRef.current) {
       const { scrollLeft, clientWidth } = carouselRef.current;
       const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
       carouselRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+  };
+
+  // Função para atualizar o dot ativo com base na rolagem
+  const handleScroll = () => {
+    if (carouselRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+      const maxScroll = scrollWidth - clientWidth;
+      
+      if (maxScroll > 0) {
+        // Calcula a porcentagem da rolagem para determinar o índice atual
+        const scrollPercentage = scrollLeft / maxScroll;
+        const index = Math.round(scrollPercentage * (depoimentos.length - 1));
+        setActiveIndex(index);
+      }
+    }
+  };
+
+  // Função para rolar até um depoimento específico ao clicar na bolinha
+  const scrollToDot = (index) => {
+    if (carouselRef.current) {
+      const { scrollWidth, clientWidth } = carouselRef.current;
+      const maxScroll = scrollWidth - clientWidth;
+      const targetScroll = (index / (depoimentos.length - 1)) * maxScroll;
+      carouselRef.current.scrollTo({ left: targetScroll, behavior: 'smooth' });
     }
   };
 
@@ -37,7 +63,7 @@ export default function Testimonials() {
             </p>
           </div>
           
-          <div className="flex gap-4 hidden md:flex">
+          <div className="hidden md:flex gap-4">
             <button 
               onClick={() => scroll('left')} 
               className="p-4 rounded-full bg-white border border-drica-dark/10 text-drica-dark hover:bg-drica-orange hover:text-white hover:border-transparent transition-all duration-300 shadow-sm focus:outline-none"
@@ -55,10 +81,10 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* AJUSTE AQUI: items-stretch faz os cards ficarem da mesma altura e o pb-16 dá respiro no rodapé */}
         <div 
           ref={carouselRef}
-          className="flex items-stretch overflow-x-auto snap-x snap-mandatory gap-6 pb-16 pt-8 px-4 -mx-4 sm:mx-0 sm:px-0 hide-scrollbar"
+          onScroll={handleScroll}
+          className="flex items-stretch overflow-x-auto snap-x snap-mandatory gap-6 pb-6 pt-8 px-4 -mx-4 sm:mx-0 sm:px-0 hide-scrollbar"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           <style>{`
@@ -70,7 +96,6 @@ export default function Testimonials() {
           {depoimentos.map((depoimento, index) => (
             <div 
               key={index} 
-              /* AJUSTE AQUI: h-auto garante que o card cresça conforme o texto */
               className="snap-center shrink-0 w-[85vw] sm:w-[380px] lg:w-[420px] h-auto bg-white p-8 lg:p-10 rounded-[2.5rem] shadow-lg border border-drica-dark/5 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-20 h-20 bg-drica-blue/10 rounded-bl-[100px] z-0"></div>
@@ -105,6 +130,28 @@ export default function Testimonials() {
             </div>
           ))}
         </div>
+
+        {/* INDICADORES (Dots) e aviso no Mobile */}
+        <div className="flex flex-col items-center justify-center mt-6">
+          <div className="flex gap-2">
+            {depoimentos.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollToDot(index)}
+                aria-label={`Ver depoimento ${index + 1}`}
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  activeIndex === index 
+                    ? 'w-6 bg-drica-orange' 
+                    : 'w-2.5 bg-drica-dark/20 hover:bg-drica-orange/60'
+                }`}
+              />
+            ))}
+          </div>
+          <span className="text-sm text-drica-dark/50 mt-4 md:hidden">
+            Deslize para ver mais depoimentos
+          </span>
+        </div>
+
       </div>
     </section>
   );

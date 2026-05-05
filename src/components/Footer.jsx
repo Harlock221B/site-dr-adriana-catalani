@@ -40,12 +40,24 @@ export default function Footer() {
           {/* Direita: Logo e Credenciais */}
           <div className="flex flex-col items-center lg:items-end space-y-3 text-center lg:text-right lg:border-l border-drica-light/10 lg:pl-8">
             <div className="flex items-center gap-2 opacity-90">
-              <img src={icon} alt="Ícone Dra Adriana" className="h-7 sm:h-8 w-auto object-contain" />
-              <span className="text-lg font-black tracking-tight">Dra. Adriana</span>
+              <img src={icon} alt="Ícone Adriana Catalani" className="h-7 sm:h-8 w-auto object-contain" />
+              <span className="text-lg font-black tracking-tight">Adriana Catalani</span>
             </div>
-            <div className="text-xs text-drica-light/60 font-medium">
-              <p>Psicóloga e Psicanalista | CRP 06/XXXXXX</p>
-              <p>© {new Date().getFullYear()} Adriana Catalani.</p>
+            
+            <div className="text-xs text-drica-light/80 font-medium space-y-1">
+              <p>Psicóloga e Psicanalista | CRP: 06/220435</p>
+              <p>Atendimento online e presencial em Guaratinguetá e Lorena</p>
+              <p>
+                <a 
+                  href="https://instagram.com/adriana_barbosa_catalani" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:text-drica-orange transition-colors duration-300"
+                >
+                  Instagram: @adriana_barbosa_catalani
+                </a>
+              </p>
+              <p className="pt-2 opacity-50 text-drica-light/50">© {new Date().getFullYear()} Adriana Catalani.</p>
             </div>
           </div>
 

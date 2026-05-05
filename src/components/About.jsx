@@ -16,7 +16,7 @@ export default function About() {
           
           <img 
             src={img2} 
-            alt="Dra Adriana Catalani" 
+            alt="Adriana Catalani" 
             className="w-full aspect-[4/5] object-cover object-center bg-drica-light/10 rounded-[2.5rem] lg:rounded-[3rem] rounded-tr-none border border-drica-light/20 shadow-2xl relative z-10 transition-transform duration-700 ease-in-out group-hover:scale-[1.02]"
           />
           
@@ -31,17 +31,19 @@ export default function About() {
         
         {/* Lado Direito: Textos e Imagem Inferior */}
         <div className="order-1 lg:order-2 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-balance leading-tight">
-            A luz que guia o processo.
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-balance leading-tight uppercase">
+            A LUZ QUE GUIA O PROCESSO
           </h2>
           
           <div className="space-y-4 text-base sm:text-lg font-light text-drica-light/80 leading-relaxed text-pretty">
             <p>
-              Inspirada pelo conceito de uma luminária de mesa, a minha prática procura trazer foco para os seus sentimentos. Acredito que a terapia é o ambiente seguro onde podemos direcionar a luz para as questões que precisam ser vistas e compreendidas.
+              O logotipo acima junto ao meu nome traz a imagem estilizada de uma luminária de mesa projetando seu facho de luz: quero através de minha prática trazer foco para os seus sentimentos. Acredito que a terapia é o ambiente seguro onde podemos direcionar luz para as questões que precisam ser vistas e compreendidas.
             </p>
-            <p>
-              Trabalho com psicanálise integrativa, utilizando a escuta ativa para construir um espaço livre de julgamentos, onde você é o centro da sua própria jornada de cura e autoconhecimento.
-            </p>
+            
+            {/* Espaço reservado para a experiência (placeholder estilizado combinando com o tema escuro) */}
+            <div className="p-4 mt-4 bg-drica-light/5 border-l-4 border-drica-orange text-sm italic text-left rounded-r-lg">
+              [Espaço reservado para o texto sobre a experiência profissional da Adriana que será enviado posteriormente]
+            </div>
           </div>
           
           {/* CORREÇÃO DEFINITIVA: Div externa pro espaçamento (pt-6) e div interna como máscara redonda */}

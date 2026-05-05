@@ -10,10 +10,10 @@ export default function Specialties() {
 
   const especialidades = [
     {
-      icon: Users, // Ícone atualizado para representar um casal/dupla
-      colorTheme: colorStyles.orange,
-      title: 'Terapia de Casal',
-      description: 'Um espaço neutro e acolhedor para melhorar a comunicação, mediar conflitos e fortalecer a conexão emocional e o respeito mútuo.'
+      icon: Compass,
+      colorTheme: colorStyles.yellow,
+      title: 'Autoconhecimento',
+      description: 'Uma jornada profunda para entender seus desejos, medos e padrões de comportamento, promovendo maior autonomia emocional.'
     },
     {
       icon: Sparkles,
@@ -22,10 +22,10 @@ export default function Specialties() {
       description: 'Ferramentas da psicanálise para compreender as raízes da ansiedade, ajudando a retomar o controle e a leveza no dia a dia.'
     },
     {
-      icon: Compass,
-      colorTheme: colorStyles.yellow,
-      title: 'Autoconhecimento',
-      description: 'Uma jornada profunda para entender seus desejos, medos e padrões de comportamento, promovendo maior autonomia emocional.'
+      icon: Users, // Ícone mantido para representar relacionamentos
+      colorTheme: colorStyles.orange,
+      title: 'Relacionamento Afetivo',
+      description: 'Um espaço neutro e acolhedor para melhorar a comunicação, mediar conflitos e fortalecer a conexão emocional e o respeito mútuo.'
     }
   ];
 

@@ -20,7 +20,7 @@ export default function Hero() {
         </h1>
         
         <p className="text-lg sm:text-xl md:text-2xl font-light leading-relaxed max-w-2xl text-drica-dark/80 text-pretty">
-          Em um ambiente de escuta acolhedora, caminhamos juntos para a compreensão e o cuidado com a sua saúde mental.
+          Entenda suas dores, busque seus sonhos.
         </p>
         
         {/* Container do Botão com Efeito de Glow (Brilho) */}

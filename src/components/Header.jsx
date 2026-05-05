@@ -12,11 +12,11 @@ export default function Header() {
         <a href="#" className="flex items-center gap-3 group z-10">
           <img 
             src={icon} 
-            alt="Ícone Dra Adriana" 
+            alt="Ícone Adriana Catalani" 
             className="h-10 sm:h-12 lg:h-14 w-auto object-contain transition-transform duration-500 group-hover:scale-110 origin-center drop-shadow-sm"
           />
           <span className="text-xl sm:text-2xl font-black text-drica-dark tracking-tight">
-            Dra. Adriana
+            Adriana Catalani
           </span>
         </a>
 

@@ -1,5 +1,6 @@
 import React from 'react';
-import { MessageCircle } from 'lucide-react';
+import { MessageCircle } from 'lucide-react'; // Mantemos esse que já estava funcionando
+import { FaInstagram } from 'react-icons/fa'; // Nosso novo ícone do react-icons!
 import icon from '../assets/icons/icon.png';
 import { whatsappLink } from '../utils/constants';
 
@@ -44,19 +45,21 @@ export default function Footer() {
               <span className="text-lg font-black tracking-tight">Adriana Catalani</span>
             </div>
             
-            <div className="text-xs text-drica-light/80 font-medium space-y-1">
+            <div className="text-xs text-drica-light/80 font-medium space-y-1.5">
               <p>Psicóloga e Psicanalista | CRP: 06/220435</p>
               <p>Atendimento online e presencial em Guaratinguetá e Lorena</p>
-              <p>
+              <div>
                 <a 
                   href="https://instagram.com/adriana_barbosa_catalani" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="hover:text-drica-orange transition-colors duration-300"
+                  className="inline-flex items-center justify-center lg:justify-end gap-1.5 hover:text-drica-orange transition-colors duration-300"
                 >
-                  Instagram: @adriana_barbosa_catalani
+                  {/* Usando o ícone do react-icons aqui */}
+                  <FaInstagram size={16} />
+                  @adriana_barbosa_catalani
                 </a>
-              </p>
+              </div>
               <p className="pt-2 opacity-50 text-drica-light/50">© {new Date().getFullYear()} Adriana Catalani.</p>
             </div>
           </div>

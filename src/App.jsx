@@ -6,6 +6,7 @@ import About from './components/About';
 import Approach from './components/Approach';
 import Specialties from './components/Specialties';
 import Testimonials from './components/Testimonials';
+import QuotesDivider from './components/QuotesDivider';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 
@@ -28,6 +29,7 @@ export default function App() {
       <Approach />
       <Testimonials />
       <FAQ />
+      <QuotesDivider />
       <Footer />
     </div>
   );

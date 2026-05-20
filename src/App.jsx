@@ -7,7 +7,7 @@ import Approach from './components/Approach';
 import Specialties from './components/Specialties';
 import QuotesDivider from './components/QuotesDivider';
 import Testimonials from './components/Testimonials';
-import ConsultorioBanner from './components/ConsultorioBanner'; // <-- Importado aqui
+import ConsultorioBanner from './components/ConsultorioBanner';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 
@@ -18,17 +18,13 @@ export default function App() {
         <title>Dra. Adriana Catalani | Psicóloga e Psicanalista</title>
         <meta name="description" content="Consultório de psicologia e psicanálise da Dra. Adriana Catalani. Um espaço seguro, ético e acolhedor para cuidar da sua saúde emocional e autoconhecimento." />
       </Helmet>
-      
       <Header />
       <Hero />
       <About />
       <Specialties />
       <QuotesDivider />
       <Approach />
-      
       <Testimonials />
-      
-      
       <FAQ />
       <Footer />
     </div>

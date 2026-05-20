@@ -7,21 +7,24 @@ export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const scroll = (direction) => {
-    if (carouselRef.current) {
-      const { scrollLeft, clientWidth } = carouselRef.current;
-      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+    if (carouselRef.current && carouselRef.current.children.length > 0) {
+      // Calcula a largura exata de 1 cartão + o espaço (gap-6 = 24px)
+      const cardWidth = carouselRef.current.children[0].offsetWidth;
+      const scrollAmount = cardWidth + 24;
+      
+      const currentScroll = carouselRef.current.scrollLeft;
+      const scrollTo = direction === 'left' ? currentScroll - scrollAmount : currentScroll + scrollAmount;
+      
       carouselRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
     }
   };
 
-  // Função para atualizar o dot ativo com base na rolagem
   const handleScroll = () => {
     if (carouselRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
       const maxScroll = scrollWidth - clientWidth;
       
       if (maxScroll > 0) {
-        // Calcula a porcentagem da rolagem para determinar o índice atual
         const scrollPercentage = scrollLeft / maxScroll;
         const index = Math.round(scrollPercentage * (depoimentos.length - 1));
         setActiveIndex(index);
@@ -29,13 +32,13 @@ export default function Testimonials() {
     }
   };
 
-  // Função para rolar até um depoimento específico ao clicar na bolinha
   const scrollToDot = (index) => {
-    if (carouselRef.current) {
-      const { scrollWidth, clientWidth } = carouselRef.current;
-      const maxScroll = scrollWidth - clientWidth;
-      const targetScroll = (index / (depoimentos.length - 1)) * maxScroll;
-      carouselRef.current.scrollTo({ left: targetScroll, behavior: 'smooth' });
+    if (carouselRef.current && carouselRef.current.children.length > 0) {
+      const cardWidth = carouselRef.current.children[0].offsetWidth;
+      const scrollAmount = cardWidth + 24;
+      
+      // Rola exatamente para o index da bolinha clicada
+      carouselRef.current.scrollTo({ left: index * scrollAmount, behavior: 'smooth' });
     }
   };
 
@@ -53,9 +56,8 @@ export default function Testimonials() {
     <section id="depoimentos" className="bg-drica-light py-20 sm:py-32 relative">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Adicionado px-4 md:px-0 para respiro no mobile */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 sm:mb-16 gap-6 px-4 md:px-0">
-          <div className="text-center md:text-left">
+          <div className="text-center md:text-left w-full md:w-auto">
             <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-drica-dark text-balance break-words">
               O que dizem os pacientes
             </h3>
@@ -64,6 +66,7 @@ export default function Testimonials() {
             </p>
           </div>
           
+          {/* Setas Visíveis Apenas no Desktop */}
           <div className="hidden md:flex gap-4">
             <button 
               onClick={() => scroll('left')} 
@@ -82,30 +85,22 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* AJUSTE: Wrapper para UX de rolagem horizontal e remoção definitiva da barra */}
-        <div 
-          className="overflow-x-auto px-4 sm:px-0 hide-scrollbar" 
-        >
+        <div className="relative w-full">
           <style>{`
             /* Esconde a barra de rolagem em todos os navegadores */
-            .hide-scrollbar::-webkit-scrollbar {
-              display: none;
-            }
-            .hide-scrollbar {
-              scrollbar-width: none; /* Firefox */
-              -ms-overflow-style: none; /* IE e Edge */
-            }
+            .hide-scrollbar::-webkit-scrollbar { display: none; }
+            .hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
           `}</style>
 
+          {/* AJUSTE: Juntamos tudo no mesmo elemento! ref, onScroll e overflow-x-auto */}
           <div 
             ref={carouselRef}
             onScroll={handleScroll}
-            className="flex items-stretch snap-x snap-mandatory gap-6 pb-6 pt-8 hide-scrollbar"
+            className="flex items-stretch overflow-x-auto snap-x snap-mandatory gap-6 pb-6 pt-8 px-4 sm:px-0 hide-scrollbar"
           >
             {depoimentos.map((depoimento, index) => (
               <div 
                 key={index} 
-                /* AJUSTE MOBILE: min-h-[350px] e break-words garantem que o card não corte o texto */
                 className="snap-center shrink-0 w-[85vw] sm:w-[380px] lg:w-[420px] h-auto min-h-[350px] md:min-h-auto bg-white p-8 lg:p-10 rounded-[2.5rem] shadow-lg border border-drica-dark/5 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col relative overflow-hidden break-words"
               >
                 <div className="absolute top-0 right-0 w-20 h-20 bg-drica-blue/10 rounded-bl-[100px] z-0"></div>
@@ -142,25 +137,45 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* INDICADORES (Dots) e aviso no Mobile - Posicionamento mantido */}
+        {/* CONTROLES MOBILE: Setas e Bolinhas Juntas */}
         <div className="flex flex-col items-center justify-center mt-6">
-          <div className="flex gap-2">
-            {depoimentos.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => scrollToDot(index)}
-                aria-label={`Ver depoimento ${index + 1}`}
-                className={`h-2.5 rounded-full transition-all duration-300 ${
-                  activeIndex === index 
-                    ? 'w-6 bg-drica-orange' 
-                    : 'w-2.5 bg-drica-dark/20 hover:bg-drica-orange/60'
-                }`}
-              />
-            ))}
+          <div className="flex items-center gap-4 sm:gap-6">
+            
+            {/* Seta Esquerda Mobile */}
+            <button 
+              onClick={() => scroll('left')} 
+              className="md:hidden p-3 rounded-full bg-white border border-drica-dark/10 text-drica-dark active:bg-drica-orange active:text-white transition-all shadow-sm focus:outline-none"
+              aria-label="Anterior"
+            >
+              <ChevronLeft size={20} />
+            </button>
+
+            {/* Bolinhas */}
+            <div className="flex gap-2">
+              {depoimentos.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => scrollToDot(index)}
+                  aria-label={`Ver depoimento ${index + 1}`}
+                  className={`h-2.5 rounded-full transition-all duration-300 ${
+                    activeIndex === index 
+                      ? 'w-6 bg-drica-orange' 
+                      : 'w-2.5 bg-drica-dark/20 hover:bg-drica-orange/60'
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Seta Direita Mobile */}
+            <button 
+              onClick={() => scroll('right')} 
+              className="md:hidden p-3 rounded-full bg-white border border-drica-dark/10 text-drica-dark active:bg-drica-orange active:text-white transition-all shadow-sm focus:outline-none"
+              aria-label="Próximo"
+            >
+              <ChevronRight size={20} />
+            </button>
+
           </div>
-          <span className="text-sm text-drica-dark/50 mt-4 md:hidden">
-            Deslize para ver mais depoimentos
-          </span>
         </div>
 
       </div>

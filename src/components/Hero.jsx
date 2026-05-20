@@ -4,11 +4,12 @@ import img1 from '../assets/imgs/Dr Adriana 1.jpeg';
 import { whatsappLink } from '../utils/constants';
 
 export default function Hero() {
+  // AJUSTE: Adicionado pt-28 (padding-top) no mobile e pt-32 no desktop para afastar do cabeçalho fixo
   return (
-    <section className="relative px-6 py-16 sm:py-24 lg:py-32 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
+    <section className="relative px-6 pt-28 pb-16 sm:pt-32 sm:pb-24 lg:pt-40 lg:pb-32 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
       
       {/* Lado Esquerdo - Textos e CTA */}
-      <div className="space-y-8 z-10 text-center lg:text-left flex flex-col items-center lg:items-start">
+      <div className="space-y-6 sm:space-y-8 z-10 text-center lg:text-left flex flex-col items-center lg:items-start mt-4 sm:mt-0">
         
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight text-balance">
           Um espaço para <span className="text-drica-orange relative inline-block group cursor-default">falar<span className="absolute -bottom-1 left-0 w-full h-2 md:h-3 bg-drica-orange/20 rounded-full transition-all duration-300 group-hover:h-4"></span></span>,<br/> 
@@ -36,16 +37,16 @@ export default function Hero() {
 
       {/* Lado Direito - Imagem e Formas Bauhaus Animadas */}
       {/* O group/hero detecta o hover na área inteira para animar as formas juntas */}
-      <div className="relative w-full h-[350px] sm:h-[450px] lg:h-[550px] flex items-center justify-center mt-12 lg:mt-0 group/hero">
+      <div className="relative w-full h-[350px] sm:h-[450px] lg:h-[550px] flex items-center justify-center mt-8 sm:mt-12 lg:mt-0 group/hero">
         
         {/* Bola Amarela - Flutua e aumenta */}
-        <div className="absolute w-56 h-56 sm:w-72 sm:h-72 bg-drica-yellow rounded-full mix-blend-multiply opacity-80 -top-4 sm:-top-8 right-0 sm:right-10 transition-transform duration-1000 ease-out group-hover/hero:scale-110 group-hover/hero:translate-x-2"></div>
+        <div className="absolute w-48 h-48 sm:w-56 sm:h-56 lg:w-72 lg:h-72 bg-drica-yellow rounded-full mix-blend-multiply opacity-80 -top-2 sm:-top-4 lg:-top-8 right-0 sm:right-4 lg:right-10 transition-transform duration-1000 ease-out group-hover/hero:scale-110 group-hover/hero:translate-x-2"></div>
         
         {/* Forma Azul - Rotaciona e sobe */}
-        <div className="absolute w-40 h-40 sm:w-56 sm:h-56 bg-drica-blue rounded-tl-[100px] rounded-br-[100px] sm:rounded-tl-[120px] sm:rounded-br-[120px] -bottom-4 sm:-bottom-8 left-0 sm:left-10 mix-blend-multiply opacity-80 transition-transform duration-1000 ease-out group-hover/hero:-translate-y-4 group-hover/hero:-rotate-6"></div>
+        <div className="absolute w-32 h-32 sm:w-40 sm:h-40 lg:w-56 lg:h-56 bg-drica-blue rounded-tl-[80px] rounded-br-[80px] sm:rounded-tl-[100px] sm:rounded-br-[100px] lg:rounded-tl-[120px] lg:rounded-br-[120px] -bottom-2 sm:-bottom-4 lg:-bottom-8 left-0 sm:left-4 lg:left-10 mix-blend-multiply opacity-80 transition-transform duration-1000 ease-out group-hover/hero:-translate-y-4 group-hover/hero:-rotate-6"></div>
         
         {/* Wrapper da Imagem para manter as bordas perfeitamente redondas */}
-        <div className="relative z-10 w-[85%] sm:w-3/4 lg:w-full max-w-md mx-auto h-full rounded-[2rem] sm:rounded-[3rem] border-4 sm:border-8 border-drica-light shadow-2xl overflow-hidden bg-drica-light/10">
+        <div className="relative z-10 w-[85%] sm:w-3/4 lg:w-full max-w-sm sm:max-w-md mx-auto h-full rounded-[2rem] sm:rounded-[3rem] border-4 sm:border-8 border-drica-light shadow-2xl overflow-hidden bg-drica-light/10">
           <img 
             src={img1} 
             alt="Adriana em sessão" 
@@ -54,7 +55,7 @@ export default function Hero() {
         </div>
         
         {/* Aro Laranja - Rotaciona */}
-        <div className="absolute w-24 h-24 sm:w-32 sm:h-32 border-[10px] sm:border-[16px] border-drica-orange rounded-full -bottom-6 sm:-bottom-10 right-4 sm:right-16 z-20 transition-transform duration-1000 ease-out group-hover/hero:scale-110 group-hover/hero:rotate-12"></div>
+        <div className="absolute w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 border-[8px] sm:border-[10px] lg:border-[16px] border-drica-orange rounded-full -bottom-4 sm:-bottom-6 lg:-bottom-10 right-4 sm:right-8 lg:right-16 z-20 transition-transform duration-1000 ease-out group-hover/hero:scale-110 group-hover/hero:rotate-12"></div>
       </div>
       
     </section>

@@ -27,19 +27,20 @@ export default function Header() {
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
       
-      {/* Announcement Bar */}
-      <div className="w-full bg-drica-orange/10 text-center py-1.5 text-xs sm:text-sm font-medium text-drica-dark tracking-wide border-b border-drica-orange/5">
+      {/* Announcement Bar - Agora visível em TODAS as telas (mobile e desktop) */}
+      <div className="w-full bg-drica-orange/10 text-center py-1.5 px-2 text-[11px] sm:text-xs md:text-sm font-medium text-drica-dark tracking-wide border-b border-drica-orange/5 leading-tight">
         Atendimento on-line para o Brasil e exterior | Presencial em Lorena e Guaratinguetá
       </div>
 
       {/* Main Header Content */}
-      <div className={`max-w-7xl mx-auto px-6 flex justify-between items-center transition-all duration-300 ${scrolled ? 'py-3' : 'py-5'}`}>
+      <div className={`max-w-7xl mx-auto px-4 sm:px-6 flex justify-between items-center transition-all duration-300 ${scrolled ? 'py-3' : 'py-4'}`}>
+        
         {/* Logo */}
-        <a href="#" className="flex items-center gap-3 group">
-          <img src={logo} alt="Logo Dra. Adriana Catalani" className="h-10 sm:h-12 w-auto transition-transform group-hover:scale-105" />
+        <a href="#" className="flex items-center gap-2 sm:gap-3 group z-50">
+          <img src={logo} alt="Logo Adriana Catalani" className="h-8 sm:h-10 lg:h-12 w-auto transition-transform group-hover:scale-105" />
           <div className="flex flex-col">
-            <span className="text-xl font-black tracking-tight text-drica-dark">Adriana Catalani</span>
-            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-drica-orange">Psicologia • Psicanálise</span>
+            <span className="text-lg sm:text-xl font-black tracking-tight text-drica-dark">Adriana Catalani</span>
+            <span className="text-[8px] sm:text-[10px] uppercase tracking-[0.2em] font-bold text-drica-orange">Psicologia • Psicanálise</span>
           </div>
         </a>
 
@@ -64,22 +65,25 @@ export default function Header() {
 
         {/* Mobile Menu Button */}
         <button 
-          className="lg:hidden text-drica-dark"
+          className="lg:hidden text-drica-dark z-50 p-2"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle Menu"
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Nav */}
-      <div className={`lg:hidden absolute top-full left-0 w-full bg-white shadow-2xl transition-all duration-300 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+      {/* Mobile Nav Dropdown */}
+      <div 
+        className={`lg:hidden absolute top-full left-0 w-full bg-white shadow-2xl transition-all duration-300 transform origin-top ${isOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'}`}
+      >
         <nav className="flex flex-col p-6 gap-4">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="text-lg font-bold text-drica-dark border-b border-gray-100 pb-2"
+              className="text-lg font-bold text-drica-dark border-b border-gray-100 pb-2 hover:text-drica-orange"
             >
               {link.name}
             </a>

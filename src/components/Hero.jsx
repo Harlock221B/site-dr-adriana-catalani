@@ -9,10 +9,6 @@ export default function Hero() {
       
       {/* Lado Esquerdo - Textos e CTA */}
       <div className="space-y-8 z-10 text-center lg:text-left flex flex-col items-center lg:items-start">
-        <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-drica-yellow/30 text-drica-dark text-xs sm:text-sm font-bold tracking-widest uppercase shadow-sm transition-transform hover:scale-105 cursor-default">
-          <span className="w-2 h-2 rounded-full bg-drica-orange animate-pulse"></span>
-          Psicologia e Psicanálise
-        </div>
         
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tight text-balance">
           Um espaço para <span className="text-drica-orange relative inline-block group cursor-default">falar<span className="absolute -bottom-1 left-0 w-full h-2 md:h-3 bg-drica-orange/20 rounded-full transition-all duration-300 group-hover:h-4"></span></span>,<br/> 

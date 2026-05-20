@@ -1,5 +1,13 @@
 export const depoimentos = [
   {
+    nome: "Thays Oliveira",
+    estrelas: 5,
+    tempo: "2 dias atrás",
+    texto: "A Adriana é uma psicóloga acolhedora, atualizada, que traz bons questionamentos para reflexões e melhoria comportamental. Indico de olho fechado.",
+    // Nota: Se o seu componente Testimonials.jsx suportar o campo 'badge', 
+    // pode usar: badge: "Local Guide · 16 avaliações"
+  },
+  {
     nome: "Maria Clara Carvalho de Almeida",
     estrelas: 5,
     tempo: "um ano atrás",
@@ -34,11 +42,5 @@ export const depoimentos = [
     estrelas: 5,
     tempo: "um ano atrás",
     texto: "Fazer um período de terapia com a Adriana foi muito proveitoso pra mim... Excelente profissional, e com seu conhecimentos e carisma me ajudou a romper com alguns ciclos que estava enfrentando. Só tenho a dizer, Muito Obrigado."
-  },
-  {
-    nome: "Paula Durigan",
-    estrelas: 5,
-    tempo: "um ano atrás",
-    texto: "Só tenho elogios ao trabalho dela. Uma profissional muito acolhedora, atenta e ética. Recomendo de olhos fechados para quem está procurando uma psicóloga comprometida com o bem-estar dos pacientes. Ela realmente faz a diferença."
   }
 ];

@@ -1,21 +1,18 @@
 import React from 'react';
-import { MessageCircle } from 'lucide-react'; // Mantemos esse que já estava funcionando
-import { FaInstagram } from 'react-icons/fa'; // Nosso novo ícone do react-icons!
+import { MessageCircle } from 'lucide-react'; 
+import { FaInstagram } from 'react-icons/fa'; // Importação do ícone do Instagram
 import icon from '../assets/icons/icon.png';
 import { whatsappLink } from '../utils/constants';
 
 export default function Footer() {
   return (
     <footer id="contato" className="bg-drica-dark text-drica-light border-t-[4px] border-drica-orange relative overflow-hidden">
-      {/* Decoração de fundo sutil */}
       <div className="absolute inset-0 bg-drica-yellow/5 skew-y-2 translate-y-1/2"></div>
       
-      {/* Padding bem menor (py-10) para ficar mais fino */}
       <div className="max-w-7xl mx-auto px-6 py-10 sm:py-12 relative z-10">
         
         <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
           
-          {/* Esquerda: Título Menor */}
           <div className="text-center lg:text-left space-y-2">
             <h2 className="text-2xl sm:text-3xl font-bold leading-tight">
               Vamos dar o próximo passo?
@@ -25,7 +22,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Centro: Botão de Contato Reduzido */}
           <div>
             <a 
               href={whatsappLink}
@@ -38,15 +34,16 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Direita: Logo e Credenciais */}
           <div className="flex flex-col items-center lg:items-end space-y-3 text-center lg:text-right lg:border-l border-drica-light/10 lg:pl-8">
             <div className="flex items-center gap-2 opacity-90">
               <img src={icon} alt="Ícone Adriana Catalani" className="h-7 sm:h-8 w-auto object-contain" />
+              {/* Nome da marca simplificado */}
               <span className="text-lg font-black tracking-tight">Adriana Catalani</span>
             </div>
             
             <div className="text-xs text-drica-light/80 font-medium space-y-1.5">
               <p>Psicóloga e Psicanalista | CRP: 06/220435</p>
+              <p>WhatsApp: (19) 99745-9295</p>
               <p>Atendimento online e presencial em Guaratinguetá e Lorena</p>
               <div>
                 <a 
@@ -55,7 +52,6 @@ export default function Footer() {
                   rel="noopener noreferrer" 
                   className="inline-flex items-center justify-center lg:justify-end gap-1.5 hover:text-drica-orange transition-colors duration-300"
                 >
-                  {/* Usando o ícone do react-icons aqui */}
                   <FaInstagram size={16} />
                   @adriana_barbosa_catalani
                 </a>

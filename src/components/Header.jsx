@@ -1,62 +1,90 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
-import icon from '../assets/icons/icon.png';
-import { whatsappLink } from '../utils/constants';
+import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
+import logo from '../assets/icons/icon.png';
 
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Início', href: '#' },
+    { name: 'Sobre', href: '#sobre' },
+    { name: 'Especialidades', href: '#especialidades' },
+    { name: 'Abordagem', href: '#abordagem' },
+    { name: 'Depoimentos', href: '#depoimentos' },
+    { name: 'FAQ', href: '#faq' },
+    { name: 'Contato', href: '#contato' },
+  ];
+
   return (
-    <header className="sticky top-0 z-50 bg-drica-light/85 backdrop-blur-xl border-b border-drica-dark/5 shadow-sm">
-      <div className="px-6 py-4 lg:py-5 max-w-screen-2xl mx-auto flex justify-between items-center relative">
-        
-        {/* Nova Área do Logo: Ícone + Texto */}
-        <a href="#" className="flex items-center gap-3 group z-10">
-          <img 
-            src={icon} 
-            alt="Ícone Adriana Catalani" 
-            className="h-10 sm:h-12 lg:h-14 w-auto object-contain transition-transform duration-500 group-hover:scale-110 origin-center drop-shadow-sm"
-          />
-          <span className="text-xl sm:text-2xl font-black text-drica-dark tracking-tight">
-            Adriana Catalani
-          </span>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
+      
+      {/* Announcement Bar */}
+      <div className="w-full bg-drica-orange/10 text-center py-1.5 text-xs sm:text-sm font-medium text-drica-dark tracking-wide border-b border-drica-orange/5">
+        Atendimento on-line para o Brasil e exterior | Presencial em Lorena e Guaratinguetá
+      </div>
+
+      {/* Main Header Content */}
+      <div className={`max-w-7xl mx-auto px-6 flex justify-between items-center transition-all duration-300 ${scrolled ? 'py-3' : 'py-5'}`}>
+        {/* Logo */}
+        <a href="#" className="flex items-center gap-3 group">
+          <img src={logo} alt="Logo Dra. Adriana Catalani" className="h-10 sm:h-12 w-auto transition-transform group-hover:scale-105" />
+          <div className="flex flex-col">
+            <span className="text-xl font-black tracking-tight text-drica-dark">Adriana Catalani</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-drica-orange">Psicologia • Psicanálise</span>
+          </div>
         </a>
 
-        {/* Navegação e Botão (Escondido em telas muito pequenas, visível em Desktop) */}
-        <div className="hidden lg:flex items-center gap-8">
-          <nav className="flex items-center gap-2 bg-white/60 px-4 py-2.5 rounded-full border border-drica-dark/5 shadow-inner backdrop-blur-sm">
-            {[
-              { label: 'Sobre', href: '#sobre' },
-              { label: 'A Abordagem', href: '#abordagem' },
-              { label: 'Depoimentos', href: '#depoimentos' },
-              { label: 'Contato', href: '#contato' },
-            ].map((link) => (
-              <a 
-                key={link.label} 
-                href={link.href} 
-                className="relative px-6 py-2 text-base font-medium tracking-wide hover:text-drica-orange transition-colors duration-300 group"
-              >
-                {link.label}
-                <span className="absolute bottom-1 left-6 right-6 h-[2px] bg-drica-orange transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full"></span>
-              </a>
-            ))}
-          </nav>
-
+        {/* Desktop Nav */}
+        <nav className="hidden lg:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a 
+              key={link.name} 
+              href={link.href}
+              className="text-sm font-bold text-drica-dark hover:text-drica-orange transition-colors"
+            >
+              {link.name}
+            </a>
+          ))}
           <a 
-            href={whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-3 bg-drica-dark text-drica-light px-8 py-3.5 rounded-full text-base font-bold hover:bg-drica-orange transition-all duration-300 hover:shadow-xl hover:shadow-drica-orange/20 hover:-translate-y-1 active:translate-y-0"
+            href="#contato"
+            className="bg-drica-orange text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-drica-dark transition-all shadow-md hover:shadow-lg"
           >
-            Agendar Sessão
-            <ArrowRight size={20} />
+            Agendar Consulta
           </a>
-        </div>
-        
-        {/* Botão Mobile Simples (Aparece apenas no celular) */}
-        <div className="lg:hidden flex items-center">
-           <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="bg-drica-orange text-white px-5 py-2 rounded-full font-bold text-sm shadow-md">
-             Agendar
-           </a>
-        </div>
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <button 
+          className="lg:hidden text-drica-dark"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
+
+      {/* Mobile Nav */}
+      <div className={`lg:hidden absolute top-full left-0 w-full bg-white shadow-2xl transition-all duration-300 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+        <nav className="flex flex-col p-6 gap-4">
+          {navLinks.map((link) => (
+            <a 
+              key={link.name} 
+              href={link.href}
+              onClick={() => setIsOpen(false)}
+              className="text-lg font-bold text-drica-dark border-b border-gray-100 pb-2"
+            >
+              {link.name}
+            </a>
+          ))}
+        </nav>
       </div>
     </header>
   );

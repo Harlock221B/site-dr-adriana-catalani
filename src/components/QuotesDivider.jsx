@@ -2,24 +2,25 @@ import React from 'react';
 
 export default function QuotesDivider() {
   const frases = [
-    "Você não precisa carregar tudo sozinha(o)",
+    "Você não precisa carregar tudo sozinha/o",
     "Sua dor merece ser escutada",
     "Nem sempre é fácil pedir ajuda",
     "A terapia pode ser um recomeço"
   ];
 
   return (
-    <section className="bg-drica-orange py-16 sm:py-24 overflow-hidden relative">
-      {/* Fundo sutil */}
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
-      
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/20">
+    <section className="bg-drica-orange text-drica-light py-12 px-6 overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-4 items-center">
           {frases.map((frase, index) => (
-            <div key={index} className="px-6 py-4 md:py-0 flex items-center justify-center">
-              <p className="text-white font-medium text-xl sm:text-2xl leading-tight text-balance">
+            <div key={index} className="text-center px-4">
+              <p className="italic text-lg sm:text-xl font-light leading-relaxed text-balance">
                 "{frase}"
               </p>
+              {/* Divisor sutil para mobile entre frases */}
+              {index !== frases.length - 1 && (
+                <div className="w-12 h-px bg-drica-light/30 mx-auto mt-8 md:hidden"></div>
+              )}
             </div>
           ))}
         </div>

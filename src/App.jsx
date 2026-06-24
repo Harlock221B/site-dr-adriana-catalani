@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Analytics } from '@vercel/analytics/react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -27,6 +28,7 @@ export default function App() {
       <Testimonials />
       <FAQ />
       <Footer />
+      <Analytics />
     </div>
   );
 }

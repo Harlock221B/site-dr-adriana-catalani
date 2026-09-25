@@ -1,0 +1,22 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Coleção exclusiva de agendamentos de pacientes
+    match /appointments/{appointmentId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // Coleção de pacientes cadastrados da Dra. Adriana
+    match /patients/{patientId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Bloquear qualquer outra coleção por padrão
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+

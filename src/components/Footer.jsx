@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageCircle } from 'lucide-react'; 
+import { MessageCircle, Lock } from 'lucide-react'; 
 import { FaInstagram } from 'react-icons/fa'; // Importação do ícone do Instagram
 import icon from '../assets/icons/icon.png';
 import { whatsappLink } from '../utils/constants';
@@ -56,7 +56,18 @@ export default function Footer() {
                   @adriana_barbosa_catalani
                 </a>
               </div>
-              <p className="pt-2 opacity-50 text-drica-light/50">© {new Date().getFullYear()} Adriana Catalani.</p>
+              <div className="pt-2 flex items-center justify-center lg:justify-end gap-2 text-drica-light/50 text-[11px]">
+                <span>© {new Date().getFullYear()} Adriana Catalani.</span>
+                <span>•</span>
+                <a 
+                  href="/agenda" 
+                  className="hover:text-drica-yellow transition-colors inline-flex items-center gap-1 opacity-70 hover:opacity-100"
+                  title="Acesso exclusivo Dra. Adriana"
+                >
+                  <Lock size={11} />
+                  <span>Agenda</span>
+                </a>
+              </div>
             </div>
           </div>
 

@@ -1,15 +1,11 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-<<<<<<< HEAD
 import { AuthProvider } from './context/AuthContext';
+import { Analytics } from '@vercel/analytics/react';
 
 const ProtectedRoute = lazy(() => import('./components/admin/ProtectedRoute'));
 const ScheduleDashboard = lazy(() => import('./components/admin/ScheduleDashboard'));
-
-=======
-import { Analytics } from '@vercel/analytics/react';
->>>>>>> 887ea5b88f742e2cd70da517f4c700c492f7b693
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
